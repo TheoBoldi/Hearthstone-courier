@@ -1,0 +1,19 @@
+# Handle line endings automatically
+*.cs text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.fbx binary
+*.obj binary
+*.blend binary
+*.psd binary
