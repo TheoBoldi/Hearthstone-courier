@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
         playerControls = new PlayerControls();
         
         if (player == null)
-            player = FindObjectOfType<PlayerController>();
+            player = FindFirstObjectByType<PlayerController>();
     }
 
     private void OnEnable()

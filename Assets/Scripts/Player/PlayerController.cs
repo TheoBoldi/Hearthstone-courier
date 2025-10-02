@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public void HandleSprint(bool sprinting)
     {
         isSprinting = sprinting;
+         Debug.Log($"Sprint state: {isSprinting}");
     }
 
     public void HandleInteract()
