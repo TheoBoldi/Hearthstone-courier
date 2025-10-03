@@ -727,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8501573444902063904, guid: 3974561afbfbe45719a0be2b8fda9296, type: 3}
       propertyPath: m_Name
-      value: ExtraNPCPrefab
+      value: ExtraNPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,25 +6,21 @@ public class QuestGiver : InteractableCharacter
     public DeliveryQuest[] availableQuests;
     
     [Header("Dialogue Messages")]
-    [Tooltip("Message shown when NPC has quests available")]
     public string hasQuestMessage = "I have an urgent delivery for you!";
-    
-    [Tooltip("Message shown when NPC has no quests available")]
     public string noQuestMessage = "I don't have any work for you right now. Check back later!";
+    public string questCompletedMessage = "Thanks for completing that delivery! Come back later for more work."; // NEW
     
-    private DeliveryQuest pendingQuest; // Quest waiting for acceptance
+    private DeliveryQuest pendingQuest;
     private bool hasPendingOffer = false;
     
     protected override void HandleInteract()
     {
         if (hasPendingOffer)
         {
-            // Player is confirming the pending quest
             AcceptPendingQuest();
         }
         else
         {
-            // Offer a new quest
             OfferNewQuest();
         }
     }
@@ -37,16 +33,15 @@ public class QuestGiver : InteractableCharacter
             // Check if player already has a quest from this NPC
             if (playerQuestLog.HasQuestFromNPC(characterName))
             {
-                // Use the no quest message when player already has a quest
-                Debug.Log($"{characterName}: {noQuestMessage}");
+                Debug.Log($"{characterName}: You already have a quest from me. Complete it first!");
                 return;
             }
             
-            // Find the first available quest that player doesn't already have
+            // Find the first available quest that player doesn't already have AND hasn't completed
             DeliveryQuest questToOffer = null;
             foreach (var quest in availableQuests)
             {
-                if (!playerQuestLog.HasQuest(quest.questId))
+                if (!playerQuestLog.HasQuest(quest.questId) && !playerQuestLog.HasCompletedQuest(quest.questId))
                 {
                     questToOffer = quest;
                     break;
@@ -68,13 +63,29 @@ public class QuestGiver : InteractableCharacter
             }
             else
             {
-                // Use the no quest message when no quests are available
-                Debug.Log($"{characterName}: {noQuestMessage}");
+                // NEW: Use different message if all quests are completed
+                bool hasCompletedQuests = false;
+                foreach (var quest in availableQuests)
+                {
+                    if (playerQuestLog.HasCompletedQuest(quest.questId))
+                    {
+                        hasCompletedQuests = true;
+                        break;
+                    }
+                }
+                
+                if (hasCompletedQuests)
+                {
+                    Debug.Log($"{characterName}: {questCompletedMessage}");
+                }
+                else
+                {
+                    Debug.Log($"{characterName}: {noQuestMessage}");
+                }
             }
         }
         else
         {
-            // Use the no quest message when no quests are available
             Debug.Log($"{characterName}: {noQuestMessage}");
         }
     }
@@ -87,7 +98,7 @@ public class QuestGiver : InteractableCharacter
         if (playerQuestLog != null && playerInventory != null && pendingQuest != null)
         {
             // Double-check that player doesn't already have this quest
-            if (!playerQuestLog.HasQuest(pendingQuest.questId))
+            if (!playerQuestLog.HasQuest(pendingQuest.questId) && !playerQuestLog.HasCompletedQuest(pendingQuest.questId))
             {
                 // Try to add the package to inventory
                 if (pendingQuest.questPackage != null)
@@ -105,7 +116,7 @@ public class QuestGiver : InteractableCharacter
                 }
                 else
                 {
-                    // Quest without physical package (for now)
+                    // Quest without physical package
                     playerQuestLog.AddQuest(pendingQuest);
                 }
             }
@@ -126,6 +137,20 @@ public class QuestGiver : InteractableCharacter
         
         QuestLog playerQuestLog = FindFirstObjectByType<QuestLog>();
         bool hasQuestFromMe = playerQuestLog != null && playerQuestLog.HasQuestFromNPC(characterName);
+        bool hasCompletedMyQuests = false;
+        
+        // NEW: Check if player has completed all available quests
+        if (playerQuestLog != null)
+        {
+            foreach (var quest in availableQuests)
+            {
+                if (playerQuestLog.HasCompletedQuest(quest.questId))
+                {
+                    hasCompletedMyQuests = true;
+                    break;
+                }
+            }
+        }
         
         if (hasPendingOffer)
         {
@@ -133,7 +158,11 @@ public class QuestGiver : InteractableCharacter
         }
         else if (hasQuestFromMe)
         {
-            Debug.Log($"{characterName}: Come back after you've completed my delivery!");
+            Debug.Log($"You already have a quest from {characterName}. Complete it first!");
+        }
+        else if (hasCompletedMyQuests)
+        {
+            Debug.Log($"{characterName}: Come back later for more deliveries!");
         }
         else
         {

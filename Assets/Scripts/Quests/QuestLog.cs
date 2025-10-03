@@ -4,13 +4,15 @@ using UnityEngine;
 public class QuestLog : MonoBehaviour
 {
     private Dictionary<string, DeliveryQuest> activeQuests = new Dictionary<string, DeliveryQuest>();
+    private HashSet<string> completedQuestIds = new HashSet<string>(); // NEW: Track completed quests
     
     public void AddQuest(DeliveryQuest quest)
     {
-        if (!activeQuests.ContainsKey(quest.questId))
+        if (!activeQuests.ContainsKey(quest.questId) && !completedQuestIds.Contains(quest.questId))
         {
             activeQuests.Add(quest.questId, quest);
-            Debug.Log($"Quest accepted: {quest.questName}");
+            Debug.Log($"=== QUEST ACCEPTED ==="); // NEW: Header
+            Debug.Log($"{quest.questName}");
             Debug.Log($"Deliver to: {quest.toNpcId}");
         }
         else
@@ -26,9 +28,9 @@ public class QuestLog : MonoBehaviour
             DeliveryQuest quest = activeQuests[questId];
             quest.isCompleted = true;
             activeQuests.Remove(questId);
+            completedQuestIds.Add(questId); // NEW: Mark as completed
             Debug.Log($"Quest completed: {quest.questName}");
             Debug.Log($"Reward: {quest.rewardGold} gold");
-            // TODO: Add gold to player inventory later
         }
     }
     
@@ -49,13 +51,13 @@ public class QuestLog : MonoBehaviour
         return GetQuestForReceiver(receiverName) != null;
     }
     
-    // NEW: Check if player already has a specific quest
+    // Check if player already has a specific quest
     public bool HasQuest(string questId)
     {
         return activeQuests.ContainsKey(questId);
     }
     
-    // NEW: Check if player has any quest from this NPC
+    // Check if player has any quest from this NPC
     public bool HasQuestFromNPC(string npcName)
     {
         foreach (var quest in activeQuests.Values)
@@ -65,6 +67,20 @@ public class QuestLog : MonoBehaviour
                 return true;
             }
         }
+        return false;
+    }
+    
+    // NEW: Check if player has completed a specific quest
+    public bool HasCompletedQuest(string questId)
+    {
+        return completedQuestIds.Contains(questId);
+    }
+    
+    // NEW: Check if player has completed any quest from this NPC
+    public bool HasCompletedQuestFromNPC(string npcName)
+    {
+        // We'd need to store more info to implement this properly
+        // For now, we'll handle this in QuestGiver by checking individual quests
         return false;
     }
     
