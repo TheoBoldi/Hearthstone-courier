@@ -9,15 +9,26 @@ public class QuestReceiver : InteractableCharacter
     {
         // Check if player has a quest to deliver here
         QuestLog playerQuestLog = FindFirstObjectByType<QuestLog>();
-        if (playerQuestLog != null)
+        PlayerInventory playerInventory = FindFirstObjectByType<PlayerInventory>();
+        
+        if (playerQuestLog != null && playerInventory != null)
         {
             DeliveryQuest questToDeliver = playerQuestLog.GetQuestForReceiver(characterName);
             if (questToDeliver != null)
             {
-                Debug.Log($"=== DELIVERY COMPLETE ===");
-                Debug.Log($"{characterName}: Thank you for the delivery!");
-                Debug.Log($"You received {questToDeliver.rewardGold} gold!");
-                playerQuestLog.CompleteQuest(questToDeliver.questId);
+                // Remove the package from inventory
+                if (playerInventory.RemovePackageByQuestId(questToDeliver.questId))
+                {
+                    Debug.Log($"=== DELIVERY COMPLETE ===");
+                    Debug.Log($"{characterName}: Thank you for the {questToDeliver.questPackage.itemName}!");
+                    Debug.Log($"Removed from inventory: {questToDeliver.questPackage.itemName}");
+                    Debug.Log($"You received {questToDeliver.rewardGold} gold!");
+                    playerQuestLog.CompleteQuest(questToDeliver.questId);
+                }
+                else
+                {
+                    Debug.Log($"{characterName}: You don't seem to have my package...");
+                }
             }
             else
             {

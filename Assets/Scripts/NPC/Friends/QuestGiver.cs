@@ -82,13 +82,32 @@ public class QuestGiver : InteractableCharacter
     private void AcceptPendingQuest()
     {
         QuestLog playerQuestLog = FindFirstObjectByType<QuestLog>();
-        if (playerQuestLog != null && pendingQuest != null)
+        PlayerInventory playerInventory = FindFirstObjectByType<PlayerInventory>();
+        
+        if (playerQuestLog != null && playerInventory != null && pendingQuest != null)
         {
             // Double-check that player doesn't already have this quest
             if (!playerQuestLog.HasQuest(pendingQuest.questId))
             {
-                playerQuestLog.AddQuest(pendingQuest);
-                //Debug.Log($"Quest accepted: {pendingQuest.questName}"); renduntant, already logged in Questlog.cs
+                // Try to add the package to inventory
+                if (pendingQuest.questPackage != null)
+                {
+                    if (playerInventory.AddPackage(pendingQuest.questPackage))
+                    {
+                        playerQuestLog.AddQuest(pendingQuest);
+                        Debug.Log($"Now carrying: {pendingQuest.questPackage.itemName}");
+                    }
+                    else
+                    {
+                        Debug.Log($"Cannot accept quest - inventory is full!");
+                        return;
+                    }
+                }
+                else
+                {
+                    // Quest without physical package (for now)
+                    playerQuestLog.AddQuest(pendingQuest);
+                }
             }
             else
             {

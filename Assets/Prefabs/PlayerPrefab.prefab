@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1112633791424362165}
   - component: {fileID: 3476596704299647050}
   - component: {fileID: 7386739543431417306}
+  - component: {fileID: 2433527339121905744}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -193,3 +194,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a7aeab3df214df794af4ace63c0618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestLog
+--- !u!114 &2433527339121905744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242280323371690884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c763f022776b434e9bb7a1ebdbc1b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  maxCapacity: 3

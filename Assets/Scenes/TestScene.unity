@@ -772,11 +772,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
       propertyPath: availableQuests.Array.data[0].rewardGold
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
       propertyPath: availableQuests.Array.data[0].description
       value: Take these tools to the blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.value
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.weight
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.questId
+      value: first_delivery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.itemName
+      value: Box of tools
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.packageId
+      value: pkg_tools
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questPackage.description
+      value: Heavy metal tools for the blacksmith
       objectReference: {fileID: 0}
     - target: {fileID: 2844617175107069658, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
       propertyPath: m_LocalPosition.x

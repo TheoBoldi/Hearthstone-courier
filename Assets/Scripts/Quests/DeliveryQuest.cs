@@ -6,12 +6,15 @@ public class DeliveryQuest
     public string questId;
     public string questName;
     public string description;
-    public string fromNpcId;    // Who gives the quest
-    public string toNpcId;      // Who receives the delivery
+    public string fromNpcId;
+    public string toNpcId;
     public float rewardGold;
     public bool isCompleted;
     
-    public DeliveryQuest(string id, string name, string desc, string from, string to, float reward)
+    // NEW: Package information
+    public Package questPackage;
+    
+    public DeliveryQuest(string id, string name, string desc, string from, string to, float reward, Package package = null)
     {
         questId = id;
         questName = name;
@@ -20,5 +23,6 @@ public class DeliveryQuest
         toNpcId = to;
         rewardGold = reward;
         isCompleted = false;
+        questPackage = package;
     }
 }
