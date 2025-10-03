@@ -608,6 +608,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b828e16523fcd4360b136d7be1b4adcf, type: 3}
+--- !u!1001 &4895770948769276810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2353278157753358877, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: characterName
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353278157753358877, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: acceptableQuestIds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353278157753358877, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: 'acceptableQuestIds.Array.data[0]'
+      value: first_delivery
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282680778070735241, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_Name
+      value: QuestReceiverBlacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.11723
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222228044081557378, guid: 86591438a204d4f139af898228af50b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86591438a204d4f139af898228af50b0, type: 3}
 --- !u!1001 &5472052133608031941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -677,6 +746,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestGiverBob
       objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: interactionMessage
+      value: Hello!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questId
+      value: first_delivery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].toNpcId
+      value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].fromNpcId
+      value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].questName
+      value: Tool Delivery
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].rewardGold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391798686477165425, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
+      propertyPath: availableQuests.Array.data[0].description
+      value: Take these tools to the blacksmith
+      objectReference: {fileID: 0}
     - target: {fileID: 2844617175107069658, guid: d52fffddf1b2f45eea2e4d564d1dc7ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.26
@@ -734,3 +835,4 @@ SceneRoots:
   - {fileID: 8254209515421236422}
   - {fileID: 3864301397702125101}
   - {fileID: 5472052133608031941}
+  - {fileID: 4895770948769276810}
