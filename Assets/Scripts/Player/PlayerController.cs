@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 currentMovement;
     private bool isSprinting = false;
+    private InteractableCharacter currentInteractable;
 
     private void Awake()
     {
@@ -24,13 +25,19 @@ public class PlayerController : MonoBehaviour
     public void HandleSprint(bool sprinting)
     {
         isSprinting = sprinting;
-         Debug.Log($"Sprint state: {isSprinting}");
+        Debug.Log($"Sprint state: {isSprinting}");
     }
 
     public void HandleInteract()
     {
-        Debug.Log("Interacting with something!");
-        // We'll implement actual interaction logic later
+        if (currentInteractable != null)
+        {
+            currentInteractable.Interact();
+        }
+        else
+        {
+            Debug.Log("No one nearby to interact with");
+        }
     }
 
     private void FixedUpdate()
@@ -45,6 +52,38 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.linearVelocity = Vector2.zero;
+        }
+    }
+    
+     // Detect when we enter ANY InteractableCharacter's range
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        InteractableCharacter character = other.GetComponent<InteractableCharacter>();
+        if (character != null)
+        {
+            currentInteractable = character;
+            Debug.Log($"Now near {character.characterName} - ready to interact");
+        }
+    }
+
+    // Detect when we leave the current InteractableCharacter's range
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        InteractableCharacter character = other.GetComponent<InteractableCharacter>();
+        if (character != null && character == currentInteractable)
+        {
+            Debug.Log($"Left {character.characterName}'s range");
+            currentInteractable = null;
+        }
+    }
+
+    // Optional: Visualize interaction range in Scene view
+    private void OnDrawGizmosSelected()
+    {
+        if (currentInteractable != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, currentInteractable.transform.position);
         }
     }
 }

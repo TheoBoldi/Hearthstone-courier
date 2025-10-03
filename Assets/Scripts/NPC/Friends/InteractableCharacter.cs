@@ -45,12 +45,12 @@ public abstract class InteractableCharacter : MonoBehaviour
     // Methods that child classes can override for specific behavior
     protected virtual void OnPlayerEnterRange()
     {
-        Debug.Log($"Press E to talk to {characterName}");
+        //Debug.Log($"Press E to talk to {characterName}");
     }
 
     protected virtual void OnPlayerExitRange()
     {
-        Debug.Log($"Left {characterName}'s range");
+        //Debug.Log($"Left {characterName}'s range");
     }
     
     protected virtual void HandleInteract()
