@@ -16,11 +16,15 @@ public class QuestReceiver : InteractableCharacter
     {
         if (hasPendingDelivery)
         {
+            // Play DELIVERY COMPLETE sound when confirming delivery
+            AudioManager.Instance.PlayDeliveryCompleteSound();
             // Player is confirming the delivery
             CompletePendingDelivery();
         }
         else
         {
+            // Play INTERACTION sound for initial interaction
+            AudioManager.Instance.PlayInteractionSound();
             // Check if player has a quest to deliver here
             OfferDelivery();
         }

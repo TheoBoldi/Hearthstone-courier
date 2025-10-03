@@ -8,7 +8,7 @@ public class QuestGiver : InteractableCharacter
     [Header("Dialogue Messages")]
     public string hasQuestMessage = "I have an urgent delivery for you!";
     public string noQuestMessage = "I don't have any work for you right now. Check back later!";
-    public string questCompletedMessage = "Thanks for completing that delivery! Come back later for more work."; // NEW
+    public string questCompletedMessage = "Thanks for completing that delivery! Come back later for more work.";
     
     private DeliveryQuest pendingQuest;
     private bool hasPendingOffer = false;
@@ -17,10 +17,14 @@ public class QuestGiver : InteractableCharacter
     {
         if (hasPendingOffer)
         {
+            // Play QUEST ACCEPT sound when accepting the quest
+            AudioManager.Instance.PlayQuestAcceptSound();
             AcceptPendingQuest();
         }
         else
         {
+            // Play INTERACTION sound for initial interaction
+            AudioManager.Instance.PlayInteractionSound();
             OfferNewQuest();
         }
     }
@@ -63,7 +67,7 @@ public class QuestGiver : InteractableCharacter
             }
             else
             {
-                // NEW: Use different message if all quests are completed
+                // Use different message if all quests are completed
                 bool hasCompletedQuests = false;
                 foreach (var quest in availableQuests)
                 {
@@ -139,7 +143,7 @@ public class QuestGiver : InteractableCharacter
         bool hasQuestFromMe = playerQuestLog != null && playerQuestLog.HasQuestFromNPC(characterName);
         bool hasCompletedMyQuests = false;
         
-        // NEW: Check if player has completed all available quests
+        // Check if player has completed all available quests
         if (playerQuestLog != null)
         {
             foreach (var quest in availableQuests)

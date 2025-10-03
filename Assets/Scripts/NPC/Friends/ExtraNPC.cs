@@ -21,6 +21,10 @@ public class ExtraNPC : InteractableCharacter
 
     protected override void HandleInteract()
     {
+        // Play interaction sound
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayInteractionSound();
+        
         if (hasRandomDialogue && randomMessages.Count > 0)
         {
             string randomMessage = randomMessages[Random.Range(0, randomMessages.Count)];

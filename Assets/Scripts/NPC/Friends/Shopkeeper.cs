@@ -7,6 +7,10 @@ public class Shopkeeper : InteractableCharacter
 
     protected override void HandleInteract()
     {
+        // Play interaction sound
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayInteractionSound();
+        
         // Shop-specific logic here
         Debug.Log($"{characterName}: Welcome to my shop! I sell: {string.Join(", ", itemsForSale)}");
         // We'll hook this up to a shop UI later
